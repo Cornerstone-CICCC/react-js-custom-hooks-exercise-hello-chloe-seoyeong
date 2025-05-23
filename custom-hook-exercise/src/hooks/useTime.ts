@@ -6,7 +6,10 @@ function useTime<T>(timeType: T) {
   useEffect(() => {
     const today = new Date();
 
-    if (timeType === "day") {
+    if (timeType === "year") {
+      const year = today.getFullYear();
+      setTime(year + "");
+    } else if (timeType === "day") {
       const dayNames = [
         "Sunday",
         "Monday",
@@ -20,6 +23,26 @@ function useTime<T>(timeType: T) {
       setTime(dayNames[days]);
     } else if (timeType === "hour") {
       setTime(today.getHours() + "");
+    } else if (timeType === "month") {
+      const monthNames = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+      setTime(monthNames[today.getMonth()]);
+    } else if (timeType === "date") {
+      setTime(today.getDate() + "");
+    } else if (timeType === "min") {
+      setTime(today.getMinutes() + "");
     }
   }, [timeType]);
   return time;
